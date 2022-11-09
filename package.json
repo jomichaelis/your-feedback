@@ -1,0 +1,25 @@
+{
+  "name": "your-feedback",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "deploy": "nuxt build && nuxt generate && firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "@nuxtjs/firebase": "^8.2.2",
+    "@nuxtjs/pwa": "^3.3.5",
+    "core-js": "^3.15.1",
+    "firebase": "^9.13.0",
+    "nuxt": "^2.15.7",
+    "vue-toastification": "^1.7.14",
+    "vuetify": "^2.5.5",
+    "vuexfire": "^3.2.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.12.1"
+  }
+}

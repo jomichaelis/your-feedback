@@ -47,7 +47,7 @@ export const actions = {
     if (!authUser) {
       await this.$router.push('/login')
     } else {
-      await this.$router.push('/app')
+      await this.$router.push('/')
       // using plugin fireauth to make sure user is initialized *before* rendering the page
     }
   },

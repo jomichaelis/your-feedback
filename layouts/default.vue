@@ -50,7 +50,7 @@
         contain
       />
       <v-toolbar-title>
-        <router-link tag="span" to="/app" style="cursor: pointer">
+        <router-link tag="span" to="/" style="cursor: pointer">
           <span class="title ml-3 mr-5"><span class="font-weight-light">your</span>feedback</span>
         </router-link>
       </v-toolbar-title>
@@ -82,14 +82,14 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/app'
+          icon: 'mdi-home',
+          title: 'Dashboard',
+          to: '/'
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
-          to: '/app/inspire'
+          to: '/inspire'
         }
       ],
       miniVariant: false,

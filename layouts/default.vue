@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="dark">
+  <v-app :dark="dark" :style="{background: $vuetify.theme.themes[theme].background}">
     <v-navigation-drawer
       v-model="drawer"
       clipped
@@ -24,7 +24,7 @@
       </v-list>
       <template #append>
         <div class="pa-2">
-          <router-link tag="span" to="/logout" style="cursor: pointer">
+          <router-link to="/logout" style="cursor: pointer">
             <v-btn outlined block>
               <span>Logout</span>
               <v-icon right>
@@ -102,6 +102,12 @@ export default {
     const theme = localStorage.getItem('darkTheme')
     if (theme) {
       this.$vuetify.theme.dark = theme === 'true'
+    }
+    this.$store.dispatch('events/bindMyEvents')
+  },
+  computed:{
+    theme(){
+      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
     }
   },
   methods: {

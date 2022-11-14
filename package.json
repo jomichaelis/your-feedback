@@ -15,7 +15,9 @@
     "core-js": "^3.15.1",
     "firebase": "^9.13.0",
     "nuxt": "^2.15.7",
+    "vue-google-charts": "^1.1.0",
     "vue-toastification": "^1.7.14",
+    "vue-wordcloud": "^1.1.1",
     "vuetify": "^2.5.5",
     "vuexfire": "^3.2.5"
   },

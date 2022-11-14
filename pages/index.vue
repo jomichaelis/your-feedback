@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import EventCard from "../components/eventCard";
+import EventCard from "../components/EventCard";
 export default {
   components: {EventCard},
   async beforeMount() {
-    await this.$store.dispatch("events/loadMyEvents");
+    // await this.$store.dispatch("events/loadMyEvents");
   },
   computed: {
     events() {

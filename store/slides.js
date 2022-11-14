@@ -1,21 +1,21 @@
 import { firestoreAction } from 'vuexfire'
 
 export const state = () => ({
-  _myEvents: [],
+  _mySlides: [],
 })
 
 export const getters = {
-  myEvents: (state) => {
-    return state._myEvents
+  mySlides: (state) => {
+    return state._mySlides
   },
   byID: (state) => {
-    return id => state._myEvents.find(event => event.id === id);
+    return id => state._mySlides.find(slide => slide.id === id);
   }
 }
 
 export const mutations = {
-  setMyEvents (state, payload) {
-    state._myEvents = payload
+  setMySlides (state, payload) {
+    state._mySlides = payload
   },
 }
 
@@ -37,14 +37,14 @@ export const actions = {
       })
   },
   bindMyEvents: firestoreAction(function ({ bindFirestoreRef }) {
-    return bindFirestoreRef('_myEvents', this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events')
+    return bindFirestoreRef('_myEvents', this.$fire.firestore.collection('events')
       .orderBy('created'))
   }),
   unbindMyEvents: firestoreAction(({ unbindFirestoreRef }) => {
     return unbindFirestoreRef('_myEvents')
   }),
   createEvent (context, payload) {
-    this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events').doc(payload.id).set(payload.event)
+    this.$fire.firestore.collection('events').doc(payload.id).set(payload.event)
       .then(() => {
         this.$toast.success('Event wurde erstellt.')
       }).catch((error) => {
@@ -52,7 +52,7 @@ export const actions = {
     })
   },
   editEvent (context, payload) {
-    this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events').doc(payload.id).update(payload.event)
+    this.$fire.firestore.collection('events').doc(payload.id).update(payload.event)
       .then(() => {
         this.$toast.success('Event wurde bearbeitet.')
       }).catch((error) => {
@@ -60,7 +60,7 @@ export const actions = {
     })
   },
   deleteEvent (context, payload) {
-    this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events').doc(payload.id).delete()
+    this.$fire.firestore.collection('events').doc(payload.id).delete()
       .then(() => {
         this.$toast.success('Event wurde gelöscht.')
       }).catch((error) => {

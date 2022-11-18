@@ -5,8 +5,9 @@
       clipped
       fixed
       app
+      :color="$vuetify.theme.themes[theme].navigation"
     >
-      <v-list class="pt-0">
+      <v-list class="pt-2" nav>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -23,6 +24,22 @@
         </v-list-item>
       </v-list>
       <template #append>
+        <v-list class="pt-2" nav>
+          <v-list-item
+            v-for="(item, i) in bottomitems"
+            :key="i"
+            :to="item.to"
+            router
+            exact
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
         <div class="pa-2">
           <router-link to="/logout" style="cursor: pointer">
             <v-btn outlined block>
@@ -40,11 +57,12 @@
       fixed
       app
       elevation="0"
+      :color="$vuetify.theme.themes[theme].navigation"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-img
         class="mx-2"
-        src="/favicon.ico"
+        src="/logo.png"
         max-height="35"
         max-width="35"
         contain
@@ -55,21 +73,25 @@
         </router-link>
       </v-toolbar-title>
       <v-spacer />
+      <!--
       <v-btn icon @click.stop="switchTheme">
         <v-icon>mdi-{{ `${$vuetify.theme.dark ? 'white-balance-sunny' : 'moon-waning-crescent'}` }}</v-icon>
       </v-btn>
+      -->
     </v-app-bar>
     <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
+    <!--
     <v-footer
       :absolute="!fixed"
       app
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    -->
   </v-app>
 </template>
 
@@ -92,6 +114,13 @@ export default {
           to: '/inspire'
         }
       ],
+      bottomitems: [
+        {
+          icon: 'mdi-cog-outline',
+          title: 'Settings',
+          to: '/settings'
+        },
+      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
@@ -110,12 +139,14 @@ export default {
       return (this.$vuetify.theme.dark) ? 'dark' : 'light'
     }
   },
+  /*
   methods: {
     switchTheme () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
       localStorage.setItem('darkTheme', this.$vuetify.theme.dark.toString())
     }
   }
+  */
 }
 </script>
 

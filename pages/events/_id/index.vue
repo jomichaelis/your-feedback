@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-layout row wrap class="my-5">
-      <h1 class="heading primary--text">
+      <h1 class="heading">
         {{ event.title }}
       </h1>
       <v-spacer />

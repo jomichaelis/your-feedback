@@ -2,7 +2,7 @@
   <div>
     <v-container row wrap class="my-5">
       <h1 class="heading">
-        Dashboard
+        Events
       </h1>
     </v-container>
     <v-container>
@@ -12,24 +12,39 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-btn
+      :color="$vuetify.theme.themes[theme].orange"
+      fab
+      fixed
+      bottom
+      right
+      @click="showDialog = true"
+    >
+      <v-icon>
+        mdi-plus
+      </v-icon>
+    </v-btn>
+    <NewEventDialog v-model="showDialog" />
   </div>
 </template>
 
 <script>
-import EventCard from "../components/EventCard";
+import NewEventDialog from "../../components/NewEventDialog";
+import firestore from "@nuxtjs/firebase";
 export default {
-  components: {EventCard},
-  async beforeMount() {
-    // await this.$store.dispatch("events/loadMyEvents");
+  components: {NewEventDialog},
+  data() {
+    return {
+      showDialog: false,
+    }
   },
-  computed: {
+  computed:{
     events() {
       return this.$store.getters["events/myEvents"];
     },
     theme(){
       return (this.$vuetify.theme.dark) ? 'dark' : 'light'
     }
-  }
+  },
 }
-
 </script>

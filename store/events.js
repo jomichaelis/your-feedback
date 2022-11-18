@@ -21,8 +21,7 @@ export const mutations = {
 
 export const actions = {
   async loadMyEvents({ commit }) {
-    this.$fire.firestore.collection("events")
-      .where('user', '==', this.$fire.auth.currentUser.uid)
+    this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events')
       .get()
       .then((querySnapshot) => {
         const events = []
@@ -37,6 +36,7 @@ export const actions = {
       })
   },
   bindMyEvents: firestoreAction(function ({ bindFirestoreRef }) {
+    console.log(this.$fire.auth.currentUser.uid)
     return bindFirestoreRef('_myEvents', this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events')
       .orderBy('created'))
   }),
@@ -44,7 +44,8 @@ export const actions = {
     return unbindFirestoreRef('_myEvents')
   }),
   createEvent (context, payload) {
-    this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events').doc(payload.id).set(payload.event)
+    console.log(payload)
+    this.$fire.firestore.collection('users/' + this.$fire.auth.currentUser.uid + '/events').add(payload)
       .then(() => {
         this.$toast.success('Event wurde erstellt.')
       }).catch((error) => {

@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="dark" :style="{background: $vuetify.theme.themes[theme].background}">
+  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
     <v-navigation-drawer
       v-model="drawer"
       clipped
@@ -7,7 +7,7 @@
       app
       :color="$vuetify.theme.themes[theme].navigation"
     >
-      <v-list class="pt-2" nav>
+      <v-list class="pt-3" nav>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -41,14 +41,12 @@
           </v-list-item>
         </v-list>
         <div class="pa-2">
-          <router-link to="/logout" style="cursor: pointer">
-            <v-btn outlined block>
-              <span>Logout</span>
-              <v-icon right>
-                mdi-exit-to-app
-              </v-icon>
-            </v-btn>
-          </router-link>
+          <v-btn outlined block to="/logout" nuxt>
+            <span>Logout</span>
+            <v-icon right>
+              mdi-exit-to-app
+            </v-icon>
+          </v-btn>
         </div>
       </template>
     </v-navigation-drawer>
@@ -99,9 +97,7 @@
 export default {
   data () {
     return {
-      dark: true,
       drawer: false,
-      fixed: false,
       items: [
         {
           icon: 'mdi-home',
@@ -109,10 +105,10 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
+          icon: 'mdi-align-horizontal-left',
+          title: 'Events',
+          to: '/events'
+        },
       ],
       bottomitems: [
         {
